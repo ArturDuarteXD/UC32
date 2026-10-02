@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Biblioteca</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav>
+        <h2>📚 Biblioteca</h2>
+
+        <div>
+            <a href="{{ url_for('index') }}">Início</a>
+            <a href="{{ url_for('cadastrar') }}">Cadastrar Livro</a>
+            <a href="{{ url_for('livros') }}">Acervo</a>
+        </div>
+    </nav>
+
+
+    <main class="inicio">
+
+        <div class="card">
+
+            <h1>Sistema de Biblioteca</h1>
+
+            <p>
+                Bem-vindo ao sistema de gerenciamento de livros.
+            </p>
+
+            <p>
+                Aqui você pode cadastrar, consultar, editar
+                e excluir livros do acervo.
+            </p>
+
+            <div class="botoes">
+
+                <a class="botao" href="{{ url_for('cadastrar') }}">
+                    Cadastrar Livro
+                </a>
+
+                <a class="botao secundario" href="{{ url_for('livros') }}">
+                    Consultar Acervo
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastrar Livro</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <nav>
+
+        <h2>📚 Biblioteca</h2>
+
+        <div>
+
+            <a href="{{ url_for('index') }}">Início</a>
+
+            <a href="{{ url_for('cadastrar') }}">
+                Cadastrar Livro
+            </a>
+
+            <a href="{{ url_for('livros') }}">
+                Acervo
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <main>
+
+        <div class="formulario">
+
+            <h1>Cadastrar Livro</h1>
+
+            <form method="POST">
+
+                <label>Título:</label>
+
+                <input
+                    type="text"
+                    name="titulo"
+                    placeholder="Digite o título"
+                    required
+                >
+
+
+                <label>Ano:</label>
+
+                <input
+                    type="number"
+                    name="ano"
+                    placeholder="Ex: 2024"
+                    required
+                >
+
+
+                <label>ISBN:</label>
+
+                <input
+                    type="text"
+                    name="isbn"
+                    placeholder="Digite o ISBN"
+                    required
+                >
+
+
+                <label>Autor:</label>
+
+                <select name="autor_id" required>
+
+                    <option value="">
+                        Selecione um autor
+                    </option>
+
+                    {% for autor in autores %}
+
+                    <option value="{{ autor.id }}">
+                        {{ autor.nome }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <label>Categoria:</label>
+
+                <select name="categoria_id" required>
+
+                    <option value="">
+                        Selecione uma categoria
+                    </option>
+
+                    {% for categoria in categorias %}
+
+                    <option value="{{ categoria.id }}">
+                        {{ categoria.nome }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <button type="submit">
+                    Cadastrar Livro
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

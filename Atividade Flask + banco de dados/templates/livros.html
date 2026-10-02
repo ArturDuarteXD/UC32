@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Acervo</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <nav>
+
+        <h2>📚 Biblioteca</h2>
+
+        <div>
+
+            <a href="{{ url_for('index') }}">Início</a>
+
+            <a href="{{ url_for('cadastrar') }}">
+                Cadastrar Livro
+            </a>
+
+            <a href="{{ url_for('livros') }}">
+                Acervo
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <main>
+
+        <h1>Acervo da Biblioteca</h1>
+
+
+        {% with mensagens = get_flashed_messages(with_categories=true) %}
+
+            {% for categoria, mensagem in mensagens %}
+
+                <div class="mensagem {{ categoria }}">
+                    {{ mensagem }}
+                </div>
+
+            {% endfor %}
+
+        {% endwith %}
+
+
+        <div class="tabela-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th>Categoria</th>
+                        <th>Ano</th>
+                        <th>ISBN</th>
+                        <th>Ações</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for livro in livros %}
+
+                    <tr>
+
+                        <td>{{ livro.id }}</td>
+
+                        <td>{{ livro.titulo }}</td>
+
+                        <td>{{ livro.autor }}</td>
+
+                        <td>{{ livro.categoria }}</td>
+
+                        <td>{{ livro.ano }}</td>
+
+                        <td>{{ livro.isbn }}</td>
+
+                        <td>
+
+                            <a
+                                class="editar"
+                                href="{{ url_for('editar', id=livro.id) }}"
+                            >
+                                Editar
+                            </a>
+
+                            <a
+                                class="excluir"
+                                href="{{ url_for('excluir', id=livro.id) }}"
+                                onclick="return confirm('Tem certeza que deseja excluir este livro?')"
+                            >
+                                Excluir
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+
+                        <td colspan="7">
+                            Nenhum livro cadastrado.
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html> 
